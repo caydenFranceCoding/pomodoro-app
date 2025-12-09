@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Project tracker with Pomodoro timer">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>OurFlow</title>
+</head>
+<body>
+    <div class="app">
+        <div id="landing-page" class="landing">
+            <div class="landing-content">
+                <h1 class="landing-logo">OurFlow</h1>
+                <p class="landing-tagline">Track projects. Stay focused. Get things done.</p>
+                
+                <div class="landing-buttons">
+                    <button id="open-individual-btn" class="btn btn-primary btn-large">Open Individually</button>
+                    <button id="open-collab-btn" class="btn btn-secondary btn-large">Open with Collaborators</button>
+                </div>
+
+                <div class="version-cards">
+                    <div class="version-card">
+                        <span class="version-tag">v1.0.0</span>
+                        <h3>Initial Release</h3>
+                        <p>Kanban boards, Pomodoro timer, task journals, and activity tracking.</p>
+                    </div>
+                    <div class="version-card">
+                        <span class="version-tag">v1.1.0</span>
+                        <h3>Coming Soon</h3>
+                        <p>Collaboration features, real-time sync, and team workspaces.</p>
+                    </div>
+                    <div class="version-card">
+                        <span class="version-tag">v1.2.0</span>
+                        <h3>Planned</h3>
+                        <p>Mobile app, push notifications, and calendar integration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading-screen" class="loading-screen hidden">
+            <svg
+                aria-label="loader"
+                role="img"
+                height="56px"
+                width="56px"
+                viewBox="0 0 56 56"
+                class="loader"
+            >
+                <clipPath id="sand-mound-top">
+                    <path
+                        d="M 14.613 13.087 C 15.814 12.059 19.3 8.039 20.3 6.539 C 21.5 4.789 21.5 2.039 21.5 2.039 L 3 2.039 C 3 2.039 3 4.789 4.2 6.539 C 5.2 8.039 8.686 12.059 9.887 13.087 C 11 14.039 12.25 14.039 12.25 14.039 C 12.25 14.039 13.5 14.039 14.613 13.087 Z"
+                        class="loader__sand-mound-top"
+                    ></path>
+                </clipPath>
+                <clipPath id="sand-mound-bottom">
+                    <path
+                        d="M 14.613 20.452 C 15.814 21.48 19.3 25.5 20.3 27 C 21.5 28.75 21.5 31.5 21.5 31.5 L 3 31.5 C 3 31.5 3 28.75 4.2 27 C 5.2 25.5 8.686 21.48 9.887 20.452 C 11 19.5 12.25 19.5 12.25 19.5 C 12.25 19.5 13.5 19.5 14.613 20.452 Z"
+                        class="loader__sand-mound-bottom"
+                    ></path>
+                </clipPath>
+                <g transform="translate(2,2)">
+                    <g
+                        transform="rotate(-90,26,26)"
+                        stroke-linecap="round"
+                        stroke-dashoffset="153.94"
+                        stroke-dasharray="153.94 153.94"
+                        stroke="hsl(0,0%,100%)"
+                        fill="none"
+                    >
+                        <circle
+                            transform="rotate(0,26,26)"
+                            r="24.5"
+                            cy="26"
+                            cx="26"
+                            stroke-width="2.5"
+                            class="loader__motion-thick"
+                        ></circle>
+                        <circle
+                            transform="rotate(90,26,26)"
+                            r="24.5"
+                            cy="26"
+                            cx="26"
+                            stroke-width="1.75"
+                            class="loader__motion-medium"
+                        ></circle>
+                        <circle
+                            transform="rotate(180,26,26)"
+                            r="24.5"
+                            cy="26"
+                            cx="26"
+                            stroke-width="1"
+                            class="loader__motion-thin"
+                        ></circle>
+                    </g>
+                    <g transform="translate(13.75,9.25)" class="loader__model">
+                        <path
+                            d="M 1.5 2 L 23 2 C 23 2 22.5 8.5 19 12 C 16 15.5 13.5 13.5 13.5 16.75 C 13.5 20 16 18 19 21.5 C 22.5 25 23 31.5 23 31.5 L 1.5 31.5 C 1.5 31.5 2 25 5.5 21.5 C 8.5 18 11 20 11 16.75 C 11 13.5 8.5 15.5 5.5 12 C 2 8.5 1.5 2 1.5 2 Z"
+                            fill="hsl(45,90%,85%)"
+                        ></path>
+                        <g stroke-linecap="round" stroke="hsl(35,90%,90%)">
+                            <line
+                                y2="20.75"
+                                x2="12"
+                                y1="15.75"
+                                x1="12"
+                                stroke-dasharray="0.25 33.75"
+                                stroke-width="1"
+                                class="loader__sand-grain-left"
+                            ></line>
+                            <line
+                                y2="21.75"
+                                x2="12.5"
+                                y1="16.75"
+                                x1="12.5"
+                                stroke-dasharray="0.25 33.75"
+                                stroke-width="1"
+                                class="loader__sand-grain-right"
+                            ></line>
+                            <line
+                                y2="31.5"
+                                x2="12.25"
+                                y1="18"
+                                x1="12.25"
+                                stroke-dasharray="0.5 107.5"
+                                stroke-width="1"
+                                class="loader__sand-drop"
+                            ></line>
+                            <line
+                                y2="31.5"
+                                x2="12.25"
+                                y1="14.75"
+                                x1="12.25"
+                                stroke-dasharray="54 54"
+                                stroke-width="1.5"
+                                class="loader__sand-fill"
+                            ></line>
+                            <line
+                                y2="31.5"
+                                x2="12"
+                                y1="16"
+                                x1="12"
+                                stroke-dasharray="1 107"
+                                stroke-width="1"
+                                stroke="hsl(35,90%,83%)"
+                                class="loader__sand-line-left"
+                            ></line>
+                            <line
+                                y2="31.5"
+                                x2="12.5"
+                                y1="16"
+                                x1="12.5"
+                                stroke-dasharray="12 96"
+                                stroke-width="1"
+                                stroke="hsl(35,90%,83%)"
+                                class="loader__sand-line-right"
+                            ></line>
+                            <g stroke-width="0" fill="hsl(35,90%,90%)">
+                                <path
+                                    d="M 12.25 15 L 15.392 13.486 C 21.737 11.168 22.5 2 22.5 2 L 2 2.013 C 2 2.013 2.753 11.046 9.009 13.438 L 12.25 15 Z"
+                                    clip-path="url(#sand-mound-top)"
+                                ></path>
+                                <path
+                                    d="M 12.25 18.5 L 15.392 20.014 C 21.737 22.332 22.5 31.5 22.5 31.5 L 2 31.487 C 2 31.487 2.753 22.454 9.009 20.062 Z"
+                                    clip-path="url(#sand-mound-bottom)"
+                                ></path>
+                            </g>
+                        </g>
+                        <g stroke-width="2" stroke-linecap="round" opacity="0.7" fill="none">
+                            <path
+                                d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5"
+                                stroke="hsl(0,0%,100%)"
+                                class="loader__glare-top"
+                            ></path>
+                            <path
+                                transform="rotate(180,12.25,16.75)"
+                                d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5"
+                                stroke="hsla(0,0%,100%,0)"
+                                class="loader__glare-bottom"
+                            ></path>
+                        </g>
+                        <rect height="2" width="24.5" fill="hsl(45,90%,50%)"></rect>
+                        <rect
+                            height="1"
+                            width="19.5"
+                            y="0.5"
+                            x="2.5"
+                            ry="0.5"
+                            rx="0.5"
+                            fill="hsl(45,90%,57.5%)"
+                        ></rect>
+                        <rect
+                            height="2"
+                            width="24.5"
+                            y="31.5"
+                            fill="hsl(45,90%,50%)"
+                        ></rect>
+                        <rect
+                            height="1"
+                            width="19.5"
+                            y="32"
+                            x="2.5"
+                            ry="0.5"
+                            rx="0.5"
+                            fill="hsl(45,90%,57.5%)"
+                        ></rect>
+                    </g>
+                </g>
+            </svg>
+            <p class="loading-text">Loading...</p>
+        </div>
+
+        <div id="main-app" class="main-app hidden">
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+            
+            <div class="mobile-header" id="mobile-header">
+                <button class="menu-btn" id="menu-btn">☰</button>
+                <h1>OurFlow</h1>
+                <div style="width: 40px;"></div>
+            </div>
+
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h1>OurFlow</h1>
+                </div>
+                <ul class="sidebar-nav">
+                    <li><button class="nav-item active" data-view="dashboard">Dashboard</button></li>
+                    <li><button class="nav-item" data-view="board">Board</button></li>
+                    <li><button class="nav-item" data-view="settings">Settings</button></li>
+                </ul>
+                <div class="sidebar-boards">
+                    <div class="sidebar-boards-header">
+                        <span>Projects</span>
+                        <button id="add-board-btn" title="Add project">+</button>
+                    </div>
+                    <ul id="boards-list"></ul>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <div id="dashboard" class="view active">
+                    <header class="view-header">
+                        <h2>Dashboard</h2>
+                    </header>
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <span class="stat-value" id="total-tasks">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="completed-tasks">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="total-pomodoros">0</span>
+                            <span class="stat-label">Pomodoros</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="total-hours">0h</span>
+                            <span class="stat-label">Focus Time</span>
+                        </div>
+                    </div>
+                    <section class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <ul id="activity-feed"></ul>
+                    </section>
+                </div>
+
+                <div id="board" class="view">
+                    <header class="view-header">
+                        <h2 id="board-title">My Project</h2>
+                        <div class="view-header-actions">
+                            <button id="delete-board-btn" class="btn-icon" title="Delete Project">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                            </button>
+                            <button id="add-card-btn" class="btn btn-primary">+ Add Task</button>
+                        </div>
+                    </header>
+                    <div class="kanban">
+                        <div class="kanban-column" data-column="todo">
+                            <div class="column-header">
+                                <h3>To Do</h3>
+                                <span class="column-count">0</span>
+                            </div>
+                            <div class="column-cards" data-column="todo"></div>
+                        </div>
+                        <div class="kanban-column" data-column="in-progress">
+                            <div class="column-header">
+                                <h3>In Progress</h3>
+                                <span class="column-count">0</span>
+                            </div>
+                            <div class="column-cards" data-column="in-progress"></div>
+                        </div>
+                        <div class="kanban-column" data-column="done">
+                            <div class="column-header">
+                                <h3>Done</h3>
+                                <span class="column-count">0</span>
+                            </div>
+                            <div class="column-cards" data-column="done"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="settings" class="view">
+                    <header class="view-header">
+                        <h2>Settings</h2>
+                    </header>
+                    <div class="settings-section">
+                        <h3>Timer</h3>
+                        <div class="setting-row">
+                            <label for="focus-duration">Focus duration (minutes)</label>
+                            <input type="number" id="focus-duration" value="25" min="1" max="60">
+                        </div>
+                        <div class="setting-row">
+                            <label for="break-duration">Break duration (minutes)</label>
+                            <input type="number" id="break-duration" value="5" min="1" max="30">
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        <div class="setting-row">
+                            <label for="notif-toggle">Enable notifications</label>
+                            <input type="checkbox" id="notif-toggle">
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <div class="timer-widget" id="timer-widget">
+                <div class="timer-widget-header" id="timer-widget-header">
+                    <span id="timer-task-name">No task selected</span>
+                    <button id="timer-expand" class="timer-toggle">▲</button>
+                </div>
+                <div class="timer-widget-body">
+                    <div class="timer-display">
+                        <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="timer-start" class="btn btn-primary">Start</button>
+                        <button id="timer-pause" class="btn btn-secondary" disabled>Pause</button>
+                        <button id="timer-reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="auth-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content modal-small">
+                <button class="modal-close">&times;</button>
+                
+                <div id="login-form" class="auth-form">
+                    <h3>Welcome Back</h3>
+                    <input type="email" id="login-email" placeholder="Email">
+                    <input type="password" id="login-password" placeholder="Password">
+                    <button id="login-btn" class="btn btn-primary btn-full">Log In</button>
+                    <p class="auth-switch">Don't have an account? <a href="#" id="show-register">Sign up</a></p>
+                </div>
+
+                <div id="register-form" class="auth-form hidden">
+                    <h3>Create Account</h3>
+                    <input type="text" id="register-name" placeholder="Your name">
+                    <input type="email" id="register-email" placeholder="Email">
+                    <input type="password" id="register-password" placeholder="Password">
+                    <button id="register-btn" class="btn btn-primary btn-full">Sign Up</button>
+                    <p class="auth-switch">Already have an account? <a href="#" id="show-login">Log in</a></p>
+                </div>
+
+                <p id="auth-error" class="auth-error hidden"></p>
+            </div>
+        </div>
+
+        <div id="card-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <input type="text" id="card-title-input" class="card-title-input" placeholder="Task title...">
+                <div class="card-meta">
+                    <span id="card-pomodoros">0 pomodoros</span>
+                    <span id="card-created"></span>
+                </div>
+                <div class="card-actions">
+                    <select id="card-column-select">
+                        <option value="todo">To Do</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                    <button id="focus-this-btn" class="btn btn-primary">Focus on this</button>
+                    <button id="delete-card-btn" class="btn btn-danger">Delete</button>
+                </div>
+                <div class="journal-section">
+                    <h3>Journal</h3>
+                    <div class="journal-input">
+                        <textarea id="journal-entry" placeholder="Add an update..."></textarea>
+                        <button id="add-journal-btn" class="btn btn-primary">Add Entry</button>
+                    </div>
+                    <ul id="journal-entries"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="add-card-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content modal-small">
+                <button class="modal-close">&times;</button>
+                <h3>New Task</h3>
+                <input type="text" id="new-card-title" placeholder="What needs to be done?">
+                <div class="modal-actions">
+                    <button id="create-card-btn" class="btn btn-primary">Create Task</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="add-board-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content modal-small">
+                <button class="modal-close">&times;</button>
+                <h3>New Project</h3>
+                <input type="text" id="new-board-title" placeholder="Project name...">
+                <div class="modal-actions">
+                    <button id="create-board-btn" class="btn btn-primary">Create Project</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="delete-board-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content modal-small">
+                <button class="modal-close">&times;</button>
+                <h3>Delete Project</h3>
+                <p class="delete-warning">This will permanently delete all tasks in this project. Type <strong id="delete-board-name"></strong> to confirm.</p>
+                <input type="text" id="delete-board-input" placeholder="Type project name...">
+                <div class="modal-actions">
+                    <button id="confirm-delete-board-btn" class="btn btn-danger" disabled>Delete Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/journal.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
