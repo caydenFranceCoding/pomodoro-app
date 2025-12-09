@@ -8,6 +8,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/spotify.css">
     <title>OurFlow</title>
 </head>
 <body>
@@ -43,171 +44,41 @@
         </div>
 
         <div id="loading-screen" class="loading-screen hidden">
-            <svg
-                aria-label="loader"
-                role="img"
-                height="56px"
-                width="56px"
-                viewBox="0 0 56 56"
-                class="loader"
-            >
+            <svg aria-label="loader" role="img" height="56px" width="56px" viewBox="0 0 56 56" class="loader">
                 <clipPath id="sand-mound-top">
-                    <path
-                        d="M 14.613 13.087 C 15.814 12.059 19.3 8.039 20.3 6.539 C 21.5 4.789 21.5 2.039 21.5 2.039 L 3 2.039 C 3 2.039 3 4.789 4.2 6.539 C 5.2 8.039 8.686 12.059 9.887 13.087 C 11 14.039 12.25 14.039 12.25 14.039 C 12.25 14.039 13.5 14.039 14.613 13.087 Z"
-                        class="loader__sand-mound-top"
-                    ></path>
+                    <path d="M 14.613 13.087 C 15.814 12.059 19.3 8.039 20.3 6.539 C 21.5 4.789 21.5 2.039 21.5 2.039 L 3 2.039 C 3 2.039 3 4.789 4.2 6.539 C 5.2 8.039 8.686 12.059 9.887 13.087 C 11 14.039 12.25 14.039 12.25 14.039 C 12.25 14.039 13.5 14.039 14.613 13.087 Z" class="loader__sand-mound-top"></path>
                 </clipPath>
                 <clipPath id="sand-mound-bottom">
-                    <path
-                        d="M 14.613 20.452 C 15.814 21.48 19.3 25.5 20.3 27 C 21.5 28.75 21.5 31.5 21.5 31.5 L 3 31.5 C 3 31.5 3 28.75 4.2 27 C 5.2 25.5 8.686 21.48 9.887 20.452 C 11 19.5 12.25 19.5 12.25 19.5 C 12.25 19.5 13.5 19.5 14.613 20.452 Z"
-                        class="loader__sand-mound-bottom"
-                    ></path>
+                    <path d="M 14.613 20.452 C 15.814 21.48 19.3 25.5 20.3 27 C 21.5 28.75 21.5 31.5 21.5 31.5 L 3 31.5 C 3 31.5 3 28.75 4.2 27 C 5.2 25.5 8.686 21.48 9.887 20.452 C 11 19.5 12.25 19.5 12.25 19.5 C 12.25 19.5 13.5 19.5 14.613 20.452 Z" class="loader__sand-mound-bottom"></path>
                 </clipPath>
                 <g transform="translate(2,2)">
-                    <g
-                        transform="rotate(-90,26,26)"
-                        stroke-linecap="round"
-                        stroke-dashoffset="153.94"
-                        stroke-dasharray="153.94 153.94"
-                        stroke="hsl(0,0%,100%)"
-                        fill="none"
-                    >
-                        <circle
-                            transform="rotate(0,26,26)"
-                            r="24.5"
-                            cy="26"
-                            cx="26"
-                            stroke-width="2.5"
-                            class="loader__motion-thick"
-                        ></circle>
-                        <circle
-                            transform="rotate(90,26,26)"
-                            r="24.5"
-                            cy="26"
-                            cx="26"
-                            stroke-width="1.75"
-                            class="loader__motion-medium"
-                        ></circle>
-                        <circle
-                            transform="rotate(180,26,26)"
-                            r="24.5"
-                            cy="26"
-                            cx="26"
-                            stroke-width="1"
-                            class="loader__motion-thin"
-                        ></circle>
+                    <g transform="rotate(-90,26,26)" stroke-linecap="round" stroke-dashoffset="153.94" stroke-dasharray="153.94 153.94" stroke="hsl(0,0%,100%)" fill="none">
+                        <circle transform="rotate(0,26,26)" r="24.5" cy="26" cx="26" stroke-width="2.5" class="loader__motion-thick"></circle>
+                        <circle transform="rotate(90,26,26)" r="24.5" cy="26" cx="26" stroke-width="1.75" class="loader__motion-medium"></circle>
+                        <circle transform="rotate(180,26,26)" r="24.5" cy="26" cx="26" stroke-width="1" class="loader__motion-thin"></circle>
                     </g>
                     <g transform="translate(13.75,9.25)" class="loader__model">
-                        <path
-                            d="M 1.5 2 L 23 2 C 23 2 22.5 8.5 19 12 C 16 15.5 13.5 13.5 13.5 16.75 C 13.5 20 16 18 19 21.5 C 22.5 25 23 31.5 23 31.5 L 1.5 31.5 C 1.5 31.5 2 25 5.5 21.5 C 8.5 18 11 20 11 16.75 C 11 13.5 8.5 15.5 5.5 12 C 2 8.5 1.5 2 1.5 2 Z"
-                            fill="hsl(45,90%,85%)"
-                        ></path>
+                        <path d="M 1.5 2 L 23 2 C 23 2 22.5 8.5 19 12 C 16 15.5 13.5 13.5 13.5 16.75 C 13.5 20 16 18 19 21.5 C 22.5 25 23 31.5 23 31.5 L 1.5 31.5 C 1.5 31.5 2 25 5.5 21.5 C 8.5 18 11 20 11 16.75 C 11 13.5 8.5 15.5 5.5 12 C 2 8.5 1.5 2 1.5 2 Z" fill="hsl(45,90%,85%)"></path>
                         <g stroke-linecap="round" stroke="hsl(35,90%,90%)">
-                            <line
-                                y2="20.75"
-                                x2="12"
-                                y1="15.75"
-                                x1="12"
-                                stroke-dasharray="0.25 33.75"
-                                stroke-width="1"
-                                class="loader__sand-grain-left"
-                            ></line>
-                            <line
-                                y2="21.75"
-                                x2="12.5"
-                                y1="16.75"
-                                x1="12.5"
-                                stroke-dasharray="0.25 33.75"
-                                stroke-width="1"
-                                class="loader__sand-grain-right"
-                            ></line>
-                            <line
-                                y2="31.5"
-                                x2="12.25"
-                                y1="18"
-                                x1="12.25"
-                                stroke-dasharray="0.5 107.5"
-                                stroke-width="1"
-                                class="loader__sand-drop"
-                            ></line>
-                            <line
-                                y2="31.5"
-                                x2="12.25"
-                                y1="14.75"
-                                x1="12.25"
-                                stroke-dasharray="54 54"
-                                stroke-width="1.5"
-                                class="loader__sand-fill"
-                            ></line>
-                            <line
-                                y2="31.5"
-                                x2="12"
-                                y1="16"
-                                x1="12"
-                                stroke-dasharray="1 107"
-                                stroke-width="1"
-                                stroke="hsl(35,90%,83%)"
-                                class="loader__sand-line-left"
-                            ></line>
-                            <line
-                                y2="31.5"
-                                x2="12.5"
-                                y1="16"
-                                x1="12.5"
-                                stroke-dasharray="12 96"
-                                stroke-width="1"
-                                stroke="hsl(35,90%,83%)"
-                                class="loader__sand-line-right"
-                            ></line>
+                            <line y2="20.75" x2="12" y1="15.75" x1="12" stroke-dasharray="0.25 33.75" stroke-width="1" class="loader__sand-grain-left"></line>
+                            <line y2="21.75" x2="12.5" y1="16.75" x1="12.5" stroke-dasharray="0.25 33.75" stroke-width="1" class="loader__sand-grain-right"></line>
+                            <line y2="31.5" x2="12.25" y1="18" x1="12.25" stroke-dasharray="0.5 107.5" stroke-width="1" class="loader__sand-drop"></line>
+                            <line y2="31.5" x2="12.25" y1="14.75" x1="12.25" stroke-dasharray="54 54" stroke-width="1.5" class="loader__sand-fill"></line>
+                            <line y2="31.5" x2="12" y1="16" x1="12" stroke-dasharray="1 107" stroke-width="1" stroke="hsl(35,90%,83%)" class="loader__sand-line-left"></line>
+                            <line y2="31.5" x2="12.5" y1="16" x1="12.5" stroke-dasharray="12 96" stroke-width="1" stroke="hsl(35,90%,83%)" class="loader__sand-line-right"></line>
                             <g stroke-width="0" fill="hsl(35,90%,90%)">
-                                <path
-                                    d="M 12.25 15 L 15.392 13.486 C 21.737 11.168 22.5 2 22.5 2 L 2 2.013 C 2 2.013 2.753 11.046 9.009 13.438 L 12.25 15 Z"
-                                    clip-path="url(#sand-mound-top)"
-                                ></path>
-                                <path
-                                    d="M 12.25 18.5 L 15.392 20.014 C 21.737 22.332 22.5 31.5 22.5 31.5 L 2 31.487 C 2 31.487 2.753 22.454 9.009 20.062 Z"
-                                    clip-path="url(#sand-mound-bottom)"
-                                ></path>
+                                <path d="M 12.25 15 L 15.392 13.486 C 21.737 11.168 22.5 2 22.5 2 L 2 2.013 C 2 2.013 2.753 11.046 9.009 13.438 L 12.25 15 Z" clip-path="url(#sand-mound-top)"></path>
+                                <path d="M 12.25 18.5 L 15.392 20.014 C 21.737 22.332 22.5 31.5 22.5 31.5 L 2 31.487 C 2 31.487 2.753 22.454 9.009 20.062 Z" clip-path="url(#sand-mound-bottom)"></path>
                             </g>
                         </g>
                         <g stroke-width="2" stroke-linecap="round" opacity="0.7" fill="none">
-                            <path
-                                d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5"
-                                stroke="hsl(0,0%,100%)"
-                                class="loader__glare-top"
-                            ></path>
-                            <path
-                                transform="rotate(180,12.25,16.75)"
-                                d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5"
-                                stroke="hsla(0,0%,100%,0)"
-                                class="loader__glare-bottom"
-                            ></path>
+                            <path d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5" stroke="hsl(0,0%,100%)" class="loader__glare-top"></path>
+                            <path transform="rotate(180,12.25,16.75)" d="M 19.437 3.421 C 19.437 3.421 19.671 6.454 17.914 8.846 C 16.157 11.238 14.5 11.5 14.5 11.5" stroke="hsla(0,0%,100%,0)" class="loader__glare-bottom"></path>
                         </g>
                         <rect height="2" width="24.5" fill="hsl(45,90%,50%)"></rect>
-                        <rect
-                            height="1"
-                            width="19.5"
-                            y="0.5"
-                            x="2.5"
-                            ry="0.5"
-                            rx="0.5"
-                            fill="hsl(45,90%,57.5%)"
-                        ></rect>
-                        <rect
-                            height="2"
-                            width="24.5"
-                            y="31.5"
-                            fill="hsl(45,90%,50%)"
-                        ></rect>
-                        <rect
-                            height="1"
-                            width="19.5"
-                            y="32"
-                            x="2.5"
-                            ry="0.5"
-                            rx="0.5"
-                            fill="hsl(45,90%,57.5%)"
-                        ></rect>
+                        <rect height="1" width="19.5" y="0.5" x="2.5" ry="0.5" rx="0.5" fill="hsl(45,90%,57.5%)"></rect>
+                        <rect height="2" width="24.5" y="31.5" fill="hsl(45,90%,50%)"></rect>
+                        <rect height="1" width="19.5" y="32" x="2.5" ry="0.5" rx="0.5" fill="hsl(45,90%,57.5%)"></rect>
                     </g>
                 </g>
             </svg>
@@ -238,6 +109,75 @@
                         <button id="add-board-btn" title="Add project">+</button>
                     </div>
                     <ul id="boards-list"></ul>
+                </div>
+
+                <!-- Spotify Widget -->
+                <div class="spotify-widget">
+                    <div class="spotify-widget-header">
+                        <svg class="spotify-logo" viewBox="0 0 24 24">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        <span>Spotify</span>
+                    </div>
+
+                    <!-- Connect State -->
+                    <div id="spotify-connect" class="spotify-connect active">
+                        <svg class="spotify-connect-icon" viewBox="0 0 24 24">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        <p>Connect Spotify to control your music while you focus</p>
+                        <button id="spotify-connect-btn" class="btn-spotify">
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                            Connect
+                        </button>
+                    </div>
+
+                    <!-- Player State -->
+                    <div id="spotify-player" class="spotify-player">
+                        <div class="spotify-player-content">
+                            <img id="spotify-album-art" class="spotify-album-art" src="" alt="Album art">
+                            <div class="spotify-track-info">
+                                <div id="spotify-track-name" class="spotify-track-name">Not playing</div>
+                                <div id="spotify-artist-name" class="spotify-artist-name">-</div>
+                            </div>
+                        </div>
+                        <div class="spotify-controls">
+                            <button id="spotify-prev" class="spotify-btn" title="Previous">
+                                <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4"/><rect x="5" y="4" width="2" height="16"/></svg>
+                            </button>
+                            <button id="spotify-play-pause" class="spotify-btn play-pause" title="Play/Pause">
+                                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                            </button>
+                            <button id="spotify-next" class="spotify-btn" title="Next">
+                                <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20"/><rect x="17" y="4" width="2" height="16"/></svg>
+                            </button>
+                        </div>
+                        <div class="spotify-progress">
+                            <span id="spotify-current-time" class="spotify-time current">0:00</span>
+                            <div id="spotify-progress-bar" class="spotify-progress-bar">
+                                <div id="spotify-progress-fill" class="spotify-progress-fill"></div>
+                            </div>
+                            <span id="spotify-total-time" class="spotify-time">0:00</span>
+                        </div>
+                        <div class="spotify-disconnect">
+                            <button id="spotify-disconnect" class="btn-disconnect">Disconnect</button>
+                        </div>
+                    </div>
+
+                    <!-- Idle State (connected but nothing playing) -->
+                    <div id="spotify-idle" class="spotify-idle">
+                        <p>No music playing</p>
+                        <span class="spotify-idle-hint">Play something on Spotify to see it here</span>
+                        <div class="spotify-disconnect">
+                            <button id="spotify-disconnect-idle" class="btn-disconnect">Disconnect</button>
+                        </div>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="spotify-error" class="spotify-error">
+                        <p>Connection error</p>
+                        <button id="spotify-retry" class="btn-spotify">Try Again</button>
+                    </div>
                 </div>
             </nav>
 
@@ -353,6 +293,7 @@
             </div>
         </div>
 
+        <!-- Modals -->
         <div id="auth-modal" class="modal hidden">
             <div class="modal-backdrop"></div>
             <div class="modal-content modal-small">
@@ -445,12 +386,14 @@
             </div>
         </div>
     </div>
+    
     <script src="js/api.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/journal.js"></script>
     <script src="js/card.js"></script>
     <script src="js/board.js"></script>
+    <script src="js/spotify.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
