@@ -1,6 +1,6 @@
 const Spotify = {
     clientId: '501fb72edecb4794a7d27b4d568b569a', 
-    redirectUri: 'http://127.0.0.1:8080/',
+    redirectUri: 'http://127.0.0.1:5500/',
     scopes: [
         'user-read-playback-state',
         'user-modify-playback-state',
