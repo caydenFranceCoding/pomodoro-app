@@ -42,10 +42,15 @@ const Collab = {
         const inviteSection = document.getElementById('invite-section');
         const currentUserId = this.getCurrentUserId();
         
-        if (this.currentBoardData && this.currentBoardData.owner._id === currentUserId) {
-            inviteSection.style.display = 'flex';
-        } else {
-            inviteSection.style.display = 'none';
+        if (this.currentBoardData) {
+            const isOwner = this.currentBoardData.owner._id === currentUserId;
+            const isCollaborator = this.currentBoardData.collaborators.some(c => c._id === currentUserId);
+            
+            if (isOwner || isCollaborator) {
+                inviteSection.style.display = 'flex';
+            } else {
+                inviteSection.style.display = 'none';
+            }
         }
     },
 
