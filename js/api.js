@@ -55,6 +55,10 @@ const Api = {
         return this.request('/boards');
     },
 
+    async getBoard(id) {
+        return this.request(`/boards/${id}`);
+    },
+
     async createBoard(name) {
         return this.request('/boards', {
             method: 'POST',
@@ -64,6 +68,19 @@ const Api = {
 
     async deleteBoard(id) {
         return this.request(`/boards/${id}`, { method: 'DELETE' });
+    },
+
+    async inviteToBoard(boardId, email) {
+        return this.request(`/boards/${boardId}/invite`, {
+            method: 'POST',
+            body: JSON.stringify({ email })
+        });
+    },
+
+    async removeCollaborator(boardId, userId) {
+        return this.request(`/boards/${boardId}/collaborators/${userId}`, {
+            method: 'DELETE'
+        });
     },
 
     async getCards(boardId) {
