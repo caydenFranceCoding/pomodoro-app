@@ -1,4 +1,4 @@
-const API_URL = 'https://ourflow-backend.onrender.com/';
+const API_URL = 'https://ourflow-backend.onrender.com/api';
 
 const Api = {
     token: localStorage.getItem('token'),
