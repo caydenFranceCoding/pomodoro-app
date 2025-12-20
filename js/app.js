@@ -12,6 +12,15 @@ const App = {
         this.updateDashboard();
         this.showView('dashboard');
 
+        if (Api.token) {
+            this.showLoading(() => {
+                document.getElementById('landing-page').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                setTimeout(() => document.getElementById('main-app').classList.add('visible'), 10);
+                this.loadUserData();
+            });
+        }
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
@@ -177,6 +186,9 @@ const App = {
 
     async loadUserData() {
         try {
+            const userData = await Api.getMe();
+            this.setUserProfile(userData.user);
+
             const boards = await Api.getBoards();
             Storage.data.boards = boards.map(b => ({
                 id: b._id,
@@ -195,16 +207,15 @@ const App = {
                     journal: c.journal,
                     createdAt: c.createdAt
                 }));
-
-                if (boards[0].owner) {
-                    this.setUserProfile(boards[0].owner);
-                }
             }
             
             this.renderBoardsList();
             this.updateDashboard();
         } catch (error) {
             console.error('Failed to load data:', error);
+            Api.logout();
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('landing-page').classList.remove('hidden');
         }
     },
 

@@ -51,6 +51,10 @@ const Api = {
         this.clearToken();
     },
 
+    async getMe() {
+        return this.request('/auth/me');
+    },
+
     async getBoards() {
         return this.request('/boards');
     },
