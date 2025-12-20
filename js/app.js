@@ -1,11 +1,13 @@
 const App = {
     currentView: 'dashboard',
+    currentUser: null,
 
     init() {
         this.bindLanding();
         this.bindNavigation();
         this.bindMobileMenu();
         this.bindModals();
+        this.bindProfile();
         this.renderBoardsList();
         this.updateDashboard();
         this.showView('dashboard');
@@ -15,16 +17,55 @@ const App = {
         }
     },
 
+    bindProfile() {
+        const profileIcon = document.getElementById('profile-icon');
+        const dropdown = document.getElementById('profile-dropdown');
+
+        profileIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('active');
+        });
+
+        dropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            Api.logout();
+            this.currentUser = null;
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('landing-page').classList.remove('hidden');
+            dropdown.classList.remove('active');
+        });
+    },
+
+    setUserProfile(user) {
+        this.currentUser = user;
+        const initials = user.name
+            .split(' ')
+            .map(n => n[0])
+            .join('')
+            .substring(0, 2)
+            .toUpperCase();
+        
+        document.getElementById('profile-initials').textContent = initials;
+        document.getElementById('profile-name').textContent = user.name;
+        document.getElementById('profile-email').textContent = user.email;
+    },
+
     bindLanding() {
         const openApp = (mode) => {
-            // Check if already logged in
             if (Api.token) {
                 this.showLoading(() => {
                     document.getElementById('main-app').classList.remove('hidden');
                     setTimeout(() => document.getElementById('main-app').classList.add('visible'), 10);
+                    this.loadUserData();
                 });
             } else {
-                // Show auth modal
                 document.getElementById('auth-modal').classList.remove('hidden');
                 document.getElementById('login-form').classList.remove('hidden');
                 document.getElementById('register-form').classList.add('hidden');
@@ -34,7 +75,6 @@ const App = {
         document.getElementById('open-individual-btn').addEventListener('click', () => openApp('individual'));
         document.getElementById('open-collab-btn').addEventListener('click', () => openApp('collab'));
 
-        // Auth form switching
         document.getElementById('show-register').addEventListener('click', (e) => {
             e.preventDefault();
             document.getElementById('login-form').classList.add('hidden');
@@ -49,7 +89,6 @@ const App = {
             document.getElementById('auth-error').classList.add('hidden');
         });
 
-        // Login
         document.getElementById('login-btn').addEventListener('click', async () => {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
@@ -60,7 +99,8 @@ const App = {
             }
 
             try {
-                await Api.login(email, password);
+                const data = await Api.login(email, password);
+                this.setUserProfile(data.user);
                 document.getElementById('auth-modal').classList.add('hidden');
                 this.showLoading(() => {
                     document.getElementById('main-app').classList.remove('hidden');
@@ -72,7 +112,6 @@ const App = {
             }
         });
 
-        // Register
         document.getElementById('register-btn').addEventListener('click', async () => {
             const name = document.getElementById('register-name').value.trim();
             const email = document.getElementById('register-email').value.trim();
@@ -89,7 +128,8 @@ const App = {
             }
 
             try {
-                await Api.register(email, password, name);
+                const data = await Api.register(email, password, name);
+                this.setUserProfile(data.user);
                 document.getElementById('auth-modal').classList.add('hidden');
                 this.showLoading(() => {
                     document.getElementById('main-app').classList.remove('hidden');
@@ -101,7 +141,6 @@ const App = {
             }
         });
 
-        // Enter key support
         ['login-email', 'login-password'].forEach(id => {
             document.getElementById(id).addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') document.getElementById('login-btn').click();
@@ -156,6 +195,10 @@ const App = {
                     journal: c.journal,
                     createdAt: c.createdAt
                 }));
+
+                if (boards[0].owner) {
+                    this.setUserProfile(boards[0].owner);
+                }
             }
             
             this.renderBoardsList();

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/spotify.css">
     <link rel="stylesheet" href="css/collab.css">
+    <link rel="stylesheet" href="css/profile.css">
     <title>OurFlow</title>
 </head>
 <body>
@@ -98,6 +99,19 @@
             <nav class="sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <h1>OurFlow</h1>
+                    <div id="profile-icon" class="profile-icon">
+                        <span id="profile-initials"></span>
+                        <div id="profile-dropdown" class="profile-dropdown">
+                            <div class="profile-dropdown-header">
+                                <div id="profile-name" class="profile-dropdown-name"></div>
+                                <div id="profile-email" class="profile-dropdown-email"></div>
+                            </div>
+                            <button id="logout-btn" class="profile-dropdown-item danger">
+                                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                Sign out
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <ul class="sidebar-nav">
                     <li><button class="nav-item active" data-view="dashboard">Dashboard</button></li>
