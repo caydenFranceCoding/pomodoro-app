@@ -29,6 +29,13 @@ const App = {
     bindProfile() {
         const profileIcon = document.getElementById('profile-icon');
         const dropdown = document.getElementById('profile-dropdown');
+        const sidebarLogo = document.getElementById('sidebar-logo');
+
+        sidebarLogo.addEventListener('click', () => {
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-view="dashboard"]').classList.add('active');
+            this.showView('dashboard');
+        });
 
         profileIcon.addEventListener('click', (e) => {
             e.stopPropagation();
