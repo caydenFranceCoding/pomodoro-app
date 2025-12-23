@@ -1,0 +1,232 @@
+/* Star Wars Theme - Dark Side Edition */
+
+[data-theme="starwars"] {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a25;
+    --bg-card: #22222f;
+    --accent: #ff3333;
+    --accent-hover: #ff5555;
+    --danger: #ff4444;
+    --success: #44ff44;
+    --warning: #ffcc00;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888899;
+    --border: #333344;
+}
+
+/* Starfield background */
+[data-theme="starwars"] body {
+    background: 
+        radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);
+}
+
+[data-theme="starwars"] body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 230px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 370px 50px, #fff, transparent),
+        radial-gradient(1px 1px at 450px 180px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 520px 90px, #fff, transparent),
+        radial-gradient(1px 1px at 600px 200px, rgba(255,255,255,0.6), transparent);
+    background-repeat: repeat;
+    background-size: 650px 250px;
+    animation: starfield 60s linear infinite;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+@keyframes starfield {
+    from { transform: translateY(0); }
+    to { transform: translateY(-250px); }
+}
+
+/* Logo styling */
+[data-theme="starwars"] .landing-logo,
+[data-theme="starwars"] .sidebar-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+[data-theme="starwars"] .landing-logo::after {
+    content: ' ⚔';
+}
+
+/* Lightsaber glow on accent elements */
+[data-theme="starwars"] .btn-primary {
+    box-shadow: 0 0 10px var(--accent), inset 0 0 10px rgba(255,51,51,0.3);
+    border: 1px solid var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+[data-theme="starwars"] .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), inset 0 0 15px rgba(255,51,51,0.4);
+}
+
+/* Card styling with hologram effect */
+[data-theme="starwars"] .task-card {
+    border: 1px solid rgba(255, 51, 51, 0.2);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255,51,51,0.05) 100%);
+}
+
+[data-theme="starwars"] .task-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+}
+
+/* Kanban columns with subtle empire styling */
+[data-theme="starwars"] .kanban-column {
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(255,51,51,0.02) 100%);
+}
+
+[data-theme="starwars"] .column-header h3::before {
+    content: '◆ ';
+    color: var(--accent);
+    font-size: 0.7em;
+}
+
+/* Stat cards with holographic feel */
+[data-theme="starwars"] .stat-card {
+    border: 1px solid rgba(255, 51, 51, 0.3);
+    background: 
+        linear-gradient(135deg, transparent 0%, rgba(255,51,51,0.05) 100%),
+        var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="starwars"] .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,51,51,0.1), transparent);
+    animation: hologram-scan 3s infinite;
+}
+
+@keyframes hologram-scan {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+[data-theme="starwars"] .stat-value {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+}
+
+/* Timer with Death Star vibes */
+[data-theme="starwars"] .timer-widget {
+    border-top: 2px solid var(--accent);
+    background: linear-gradient(0deg, rgba(255,51,51,0.1) 0%, var(--bg-secondary) 100%);
+}
+
+[data-theme="starwars"] .timer-display {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    text-shadow: 0 0 15px var(--accent);
+}
+
+/* Navigation with imperial styling */
+[data-theme="starwars"] .nav-item.active {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+[data-theme="starwars"] .nav-item:hover:not(.active) {
+    border-left: 3px solid var(--accent);
+}
+
+/* Profile icon */
+[data-theme="starwars"] .profile-icon {
+    background: linear-gradient(135deg, #ff3333 0%, #990000 100%);
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+/* Modal styling */
+[data-theme="starwars"] .modal-content {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255,51,51,0.05) 100%);
+}
+
+/* Version cards */
+[data-theme="starwars"] .version-tag {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Activity feed */
+[data-theme="starwars"] #activity-feed li {
+    border-left: 3px solid var(--accent);
+    background: linear-gradient(90deg, rgba(255,51,51,0.1) 0%, transparent 100%);
+}
+
+/* Scrollbar styling */
+[data-theme="starwars"] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+[data-theme="starwars"] ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+[data-theme="starwars"] ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+[data-theme="starwars"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+/* Theme toggle button special styling */
+[data-theme="starwars"] .theme-toggle-label {
+    color: var(--accent);
+}
+
+[data-theme="starwars"] .theme-toggle-label::after {
+    content: ' (Dark Side Active)';
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* Boards list */
+[data-theme="starwars"] #boards-list li.active {
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+}
+
+/* Input focus states */
+[data-theme="starwars"] input:focus,
+[data-theme="starwars"] textarea:focus,
+[data-theme="starwars"] select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+}
+
+/* Loading screen override */
+[data-theme="starwars"] .loader__motion-thick {
+    stroke: var(--accent) !important;
+}
+
+[data-theme="starwars"] .loading-text::after {
+    content: ' the Force';
+}
